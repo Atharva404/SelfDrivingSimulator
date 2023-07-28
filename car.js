@@ -8,6 +8,14 @@ class Car {
         this.controls = new Controls();
     }
 
+    update() {
+        if (this.controls.forward) {
+            this.y-=2;
+        }
+        if (this.controls.reverse) {
+            this.y+=2;
+        }
+    }
     draw(ctx) {
         ctx.beginPath();
         ctx.rect(
