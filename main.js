@@ -37,6 +37,13 @@ function save() {
     JSON.stringify(bestCar.brain));
 }
 
+function addLane() {
+    road = new Road(carCanvas.width/2, carCanvas.width * 0.9, road.laneCount++);
+}
+function minusLane() {
+    road = new Road(carCanvas.width/2, carCanvas.width * 0.9, road.laneCount--);
+}
+
 function addTraffic() {
     traffic.push(new Car(road.getLaneCenter(Math.random() * (3) + 0), bestCar.y + yVal/(traffic.length-3), 30, 50, "DUMMY", 2));
     yVal = yVal - 100;

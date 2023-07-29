@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, width, height, controlType, maxSpeed=3) {
+    constructor(x, y, width, height, controlType, maxSpeed=2.75) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -64,20 +64,20 @@ class Car {
         const rad = Math.hypot(this.width, this.height)/2;
         const alpha = Math.atan2(this.width, this.height);
         points.push({
-            x:this.x-Math.sin(this.angle-alpha)*rad, 
-            y:this.y-Math.cos(this.angle-alpha)*rad
+            x:this.x-Math.sin(this.angle-alpha)*rad * 0.7, 
+            y:this.y-Math.cos(this.angle-alpha)*rad * 0.7
         });
         points.push({
-            x:this.x-Math.sin(this.angle+alpha)*rad, 
-            y:this.y-Math.cos(this.angle+alpha)*rad
+            x:this.x-Math.sin(this.angle+alpha)*rad * 0.7, 
+            y:this.y-Math.cos(this.angle+alpha)*rad * 0.7
         });
         points.push({
-            x:this.x-Math.sin(Math.PI + this.angle-alpha)*rad, 
-            y:this.y-Math.cos(Math.PI + this.angle-alpha)*rad
+            x:this.x-Math.sin(Math.PI + this.angle-alpha)* rad * 0.7, 
+            y:this.y-Math.cos(Math.PI + this.angle-alpha)*rad * 0.7
         });
         points.push({
-            x:this.x-Math.sin(Math.PI + this.angle+alpha)*rad, 
-            y:this.y-Math.cos(Math.PI + this.angle+alpha)*rad
+            x:this.x-Math.sin(Math.PI + this.angle+alpha)*rad * 0.7, 
+            y:this.y-Math.cos(Math.PI + this.angle+alpha)*rad * 0.7
         });
         return points;
     }
