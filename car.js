@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, width, height) {
+    constructor(x, y, width, height, controlType, maxSpeed=4) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -7,25 +7,36 @@ class Car {
         
         this.speed = 0;
         this.acceleration = 0.2;
-        this.maxSpeed=3;
+        this.maxSpeed=maxSpeed;
         this.friction = 0.05;
         this.angle = 0;
         this.damaged = false;
 
-        this.sensor = new Sensor(this);
-        this.controls = new Controls();
+        if (controlType != "DUMMY") {
+            this.sensor = new Sensor(this);
+        }
+        this.controls = new Controls(controlType);
     }
 
-    update(roadBorders) {
-        this.#move();
-        this.polygon = this.#createPolygon();
-        this.damaged = this.#assessDamage(roadBorders);
-        this.sensor.update(roadBorders);
+    update(roadBorders, traffic) {
+        if (!this.damaged) {
+            this.#move();
+            this.polygon = this.#createPolygon();
+            this.damaged = this.#assessDamage(roadBorders, traffic);
+        }
+        if (this.sensor) {
+            this.sensor.update(roadBorders, traffic);
+        }
     }
 
-    #assessDamage(roadBorders) {
+    #assessDamage(roadBorders, traffic) {
         for (let i = 0; i < roadBorders.length; i++) {
             if (polyInteresect(this.polygon, roadBorders[i])) {
+                return true;
+            }
+        }
+        for (let i = 0; i < traffic.length; i++) {
+            if (polyInteresect(this.polygon, traffic[i].polygon)) {
                 return true;
             }
         }
@@ -91,11 +102,11 @@ class Car {
         this.x -= Math.sin(this.angle)*this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
     }
-    draw(ctx) {
+    draw(ctx, color) {
         if (this.damaged) {
             ctx.fillStyle = "gray";
         } else {
-            ctx.fillStyle = "black";
+            ctx.fillStyle = color;
         }
         ctx.beginPath();
         ctx.moveTo(this.polygon[0].x, this.polygon[0].y);
@@ -103,7 +114,9 @@ class Car {
             ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
         }
         ctx.fill();
-        this.sensor.draw(ctx);
+        if (this.sensor) {
+            this.sensor.draw(ctx);
+        }
     }
 }
 function getInteresection(A, B, C, D) {
