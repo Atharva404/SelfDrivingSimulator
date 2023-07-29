@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, width, height, controlType, maxSpeed=4) {
+    constructor(x, y, width, height, controlType, maxSpeed=3) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -35,7 +35,6 @@ class Car {
                 s=>s==null?0:1-s.offset
             );
             const outputs = NeuralNetwork.feedForward(offsets, this.brain);
-            console.log(outputs);
 
             if (this.useBrain) {
                 this.controls.forward=outputs[0];
@@ -119,7 +118,7 @@ class Car {
         this.x -= Math.sin(this.angle)*this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
     }
-    draw(ctx, color) {
+    draw(ctx, color, drawSensor=false) {
         if (this.damaged) {
             ctx.fillStyle = "gray";
         } else {
@@ -131,7 +130,7 @@ class Car {
             ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
         }
         ctx.fill();
-        if (this.sensor) {
+        if (this.sensor && drawSensor) {
             this.sensor.draw(ctx);
         }
     }
