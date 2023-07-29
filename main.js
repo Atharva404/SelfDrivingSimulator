@@ -29,12 +29,17 @@ const traffic = [
     new Car(road.getLaneCenter(2), -700, 30, 50, "DUMMY", 2)
 ];
 
-
+let yVal = traffic[traffic.length - 1].y + -200;
 animate();
 
 function save() {
     localStorage.setItem("bestBrain", 
     JSON.stringify(bestCar.brain));
+}
+
+function addTraffic() {
+    traffic.push(new Car(road.getLaneCenter(Math.random() * (2) + 0), traffic[traffic.length - 1].y + yVal/(traffic.length-1), 30, 50, "DUMMY", 2));
+    yVal = yVal - 100;
 }
 
 function discard() {
@@ -49,7 +54,7 @@ function generateCars(N) {
     return cars;
 }
 
-function animate(time) {
+function animate() {
     for (let i = 0; i < traffic.length; i++) {
         traffic[i].update(road.borders, []);
     }
