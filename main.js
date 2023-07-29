@@ -38,7 +38,7 @@ function save() {
 }
 
 function addTraffic() {
-    traffic.push(new Car(road.getLaneCenter(Math.random() * (2) + 0), traffic[traffic.length - 1].y + yVal/(traffic.length-1), 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(Math.random() * (2) + 0), bestCar.y + yVal/(traffic.length-3), 30, 50, "DUMMY", 2));
     yVal = yVal - 100;
 }
 
