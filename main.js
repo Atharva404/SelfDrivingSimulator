@@ -45,8 +45,14 @@ function minusLane() {
 }
 
 function addTraffic() {
-    traffic.push(new Car(road.getLaneCenter(Math.random() * (3) + 0), bestCar.y + yVal/(traffic.length-3), 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(Math.floor(Math.random() * (road.laneCount) + 0)), bestCar.y + yVal/(traffic.length-3), 30, 50, "DUMMY", 2));
     yVal = yVal - 100;
+}
+
+function randomTraffic() {
+    for (let i = 0; i < (Math.random() * road.laneCount + 0); i++) {
+        addTraffic();
+    }
 }
 
 function discard() {
