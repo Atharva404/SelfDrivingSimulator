@@ -4,6 +4,7 @@ class Car {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.sizeValue = 0.7;
         
         this.speed = 0;
         this.acceleration = 0.2;
@@ -64,22 +65,26 @@ class Car {
         const rad = Math.hypot(this.width, this.height)/2;
         const alpha = Math.atan2(this.width, this.height);
         points.push({
-            x:this.x-Math.sin(this.angle-alpha)*rad * 0.7, 
-            y:this.y-Math.cos(this.angle-alpha)*rad * 0.7
+            x:this.x-Math.sin(this.angle-alpha)*rad * this.sizeValue, 
+            y:this.y-Math.cos(this.angle-alpha)*rad * this.sizeValue
         });
         points.push({
-            x:this.x-Math.sin(this.angle+alpha)*rad * 0.7, 
-            y:this.y-Math.cos(this.angle+alpha)*rad * 0.7
+            x:this.x-Math.sin(this.angle+alpha)*rad * this.sizeValue, 
+            y:this.y-Math.cos(this.angle+alpha)*rad * this.sizeValue
         });
         points.push({
-            x:this.x-Math.sin(Math.PI + this.angle-alpha)* rad * 0.7, 
-            y:this.y-Math.cos(Math.PI + this.angle-alpha)*rad * 0.7
+            x:this.x-Math.sin(Math.PI + this.angle-alpha)* rad * this.sizeValue, 
+            y:this.y-Math.cos(Math.PI + this.angle-alpha)*rad * this.sizeValue
         });
         points.push({
-            x:this.x-Math.sin(Math.PI + this.angle+alpha)*rad * 0.7, 
-            y:this.y-Math.cos(Math.PI + this.angle+alpha)*rad * 0.7
+            x:this.x-Math.sin(Math.PI + this.angle+alpha)*rad * this.sizeValue, 
+            y:this.y-Math.cos(Math.PI + this.angle+alpha)*rad * this.sizeValue
         });
         return points;
+    }
+
+    updatePolygon() {
+        this.#createPolygon();
     }
 
     #move() {
