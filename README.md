@@ -6,4 +6,7 @@ This independent project uses neural networks to navigate the car through the tr
 
 This project was a great learning experience for me as it was my first project incorporating neural networks. I have previously spent time obtaining certificates in neural networks and machine learning and was very excited to create a project that incorporates such. 
 
+Edit:
+* I have added a button where we can add a car to the road where the user can control the movement of this car. This helps show how the ai controlled car reacts to a user driving near it. This simulates an automated car driving on a road with physical drivers.
+
 
