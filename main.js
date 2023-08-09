@@ -45,8 +45,9 @@ function minusLane() {
 }
 
 function addTraffic() {
-    traffic.push(new Car(road.getLaneCenter(Math.floor(Math.random() * (road.laneCount) + 0)), bestCar.y + yVal/(traffic.length-3), 30, 50, "DUMMY", 2));
+    traffic.push(new Car(road.getLaneCenter(Math.floor(Math.random() * (road.laneCount) + 0)), bestCar.y + yVal/(traffic.length-3), 30, 50, "DUMMY", 2.75));
     yVal = yVal - 100;
+    traffic[traffic.length - 1].controls = new Controls("HUMAN");
 }
 
 function randomTraffic() {
