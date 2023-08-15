@@ -11,11 +11,6 @@ class Controls {
             this.forward = true;
             this.#addKeyboardListeners();
         }
-        // switch(type) {
-        //     case "DUMMY":
-        //         this.forward = true;
-        //         break;
-        // }
     }
 
     #addKeyboardListeners(){
